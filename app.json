@@ -16,6 +16,10 @@
         "description": "Time Zone to use with Heroku. You can find the name of your timezone for example here: https://momentjs.com/timezone/.",
         "value": "Europe/Berlin"
       },
+      "TAILSCALE_AUTHKEY": {
+        "description": "Tailscale tailnet authentication key.  You can create your key here:  https://login.tailscale.com/admin/settings/keys.",
+        "value": "tk-auth-key-..........."
+      },
       "N8N_ENCRYPTION_KEY": {
         "description": "Set the n8n encryption key to a static value to avoid Heroku overriding it (causing authentication to fail).",
         "value": "change-me-to-something-else"
