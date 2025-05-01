@@ -1,10 +1,10 @@
-# n8n-heroku
+# n8n-heroku-tailscale
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?template=https://github.com/scottjwalter/n8n-heroku-tailscale/tree/main)
 
 ## n8n - Free and open fair-code licensed node based Workflow Automation Tool.
 
-This is a [Heroku](https://heroku.com/)-focused container implementation of [n8n](https://n8n.io/) that also installs tailscale, putting your Heroku app on your tailnet.
+This is a [Heroku](https://heroku.com/)-focused container implementation of [n8n](https://n8n.io/) that also installs tailscale, creating a direct-access node on your tailnet.
 
 Use the **Deploy to Heroku** button above to launch n8n on Heroku. When deploying, make sure to check all configuration options and adjust them to your needs. It's especially important to set:
 
