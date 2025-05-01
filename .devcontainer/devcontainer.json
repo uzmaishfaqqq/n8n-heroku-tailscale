@@ -9,7 +9,8 @@
 				"natqe.reload",
 				"Heroku-Dev-Tools.heroku",
 				"ms-azuretools.vscode-docker",
-				"DavidAnson.vscode-markdownlint"
+				"DavidAnson.vscode-markdownlint",
+				"github.vscode-github-actions"
 			]
 		}
 	}

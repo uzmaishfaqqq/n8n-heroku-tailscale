@@ -1,6 +1,5 @@
 #!/bin/sh
 
-
 # tailscale
 /tailscale/tailscaled \
   --tun=userspace-networking \

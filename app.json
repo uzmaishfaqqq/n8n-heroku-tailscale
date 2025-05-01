@@ -8,8 +8,8 @@
       "automation"
     ],
     "website": "https://n8n.io",
-    "repository": "https://github.com/scottjwalter/n8n-heroku-tsdproxy",
-    "logo": "https://raw.githubusercontent.com/scottjwalter/n8n-heroku-tsdproxy/main/n8n_logo.png",
+    "repository": "https://github.com/scottjwalter/n8n-heroku-tailscale",
+    "logo": "https://raw.githubusercontent.com/scottjwalter/n8n-heroku-tailscale/main/n8n_logo.png",
     "success_url": "/",
     "stack": "container",
     "env": {
