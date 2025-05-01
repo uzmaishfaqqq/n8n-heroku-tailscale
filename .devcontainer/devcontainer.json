@@ -8,9 +8,9 @@
 			"extensions": [
 				"natqe.reload",
 				"Heroku-Dev-Tools.heroku",
-				"ms-azuretools.vscode-docker",
 				"DavidAnson.vscode-markdownlint",
-				"github.vscode-github-actions"
+				"github.vscode-github-actions",
+				"ms-azuretools.vscode-containers"
 			]
 		}
 	}
