@@ -1,17 +1,22 @@
 {
     "name": "n8n",
-    "description": "deploy n8n to heroku without any hassle",
+    "description": "deploy n8n to heroku without any hassle, with tailscale",
     "keywords": [
       "n8n",
       "node",
+      "tailscale",
       "automation"
     ],
     "website": "https://n8n.io",
-    "repository": "https://github.com/n8n-io/n8n-heroku",
-    "logo": "https://raw.githubusercontent.com/n8n-io/n8n-heroku/main/n8n_logo.png",
+    "repository": "https://github.com/scottjwalter/n8n-heroku-tsdproxy",
+    "logo": "https://raw.githubusercontent.com/scottjwalter/n8n-heroku-tsdproxy/main/n8n_logo.png",
     "success_url": "/",
     "stack": "container",
     "env": {
+      "APP_NAME": {
+        "description": "Name of your app.",
+        "value": "app-name"
+      },
       "GENERIC_TIMEZONE": {
         "description": "Time Zone to use with Heroku. You can find the name of your timezone for example here: https://momentjs.com/timezone/.",
         "value": "Europe/Berlin"
@@ -26,7 +31,7 @@
       },
       "WEBHOOK_URL": {
         "description": "Replace <appname> with your Heroku application name. This will ensure the correct webhook URLs are being shown in n8n.",
-        "value": "https://<appname>.herokuapp.com"
+        "value": "https://<app-name>.herokuapp.com"
       },
       "DB_POSTGRESDB_SSL_REJECT_UNAUTHORIZED": {
         "description": "SSL is required to connect to Postgres on Heroku",
