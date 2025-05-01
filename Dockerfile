@@ -23,4 +23,5 @@ COPY --from=docker.io/tailscale/tailscale:stable /usr/local/bin/tailscale /app/t
 RUN mkdir -p /var/run/tailscale /var/cache/tailscale /var/lib/tailscale
 
 # Run on container startup.
+RUN chmod +x /app/start.sh
 CMD ["/app/start.sh"]
