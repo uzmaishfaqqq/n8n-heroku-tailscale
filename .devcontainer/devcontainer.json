@@ -2,5 +2,15 @@
 	"image": "mcr.microsoft.com/devcontainers/universal:2",
 	"features": {
 		"ghcr.io/devcontainers-extra/features/heroku-cli:1": {}
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"natqe.reload",
+				"Heroku-Dev-Tools.heroku",
+				"ms-azuretools.vscode-docker",
+				"DavidAnson.vscode-markdownlint"
+			]
+		}
 	}
 }
