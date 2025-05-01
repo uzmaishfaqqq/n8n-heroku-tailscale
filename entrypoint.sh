@@ -1,10 +1,10 @@
 #!/bin/sh
 
 # tailscale
-/app/tailscaled --tun=userspace-networking --socks5-server=localhost:1055 &
-/app/tailscale up --auth-key=${TAILSCALE_AUTHKEY} --hostname=${APP_NAME}
+/tailscaled --tun=userspace-networking --socks5-server=localhost:1055 &
+/tailscale up --auth-key=${TAILSCALE_AUTHKEY} --hostname=${APP_NAME}
 echo Tailscale started
-ALL_PROXY=socks5://localhost:1055/ /app/my-app
+export ALL_PROXY=socks5://localhost:1055/
 
 # check if port variable is set or go with default
 if [ -z ${PORT+x} ]; then echo "PORT variable not defined, leaving N8N to default port."; else export N8N_PORT="$PORT"; echo "N8N will start on '$PORT'"; fi
