@@ -13,13 +13,13 @@
     "success_url": "/",
     "stack": "container",
     "env": {
-      "APP_NAME": {
-        "description": "Name of your app.",
-        "value": "app-name"
-      },
       "GENERIC_TIMEZONE": {
         "description": "Time Zone to use with Heroku. You can find the name of your timezone for example here: https://momentjs.com/timezone/.",
         "value": "Europe/Berlin"
+      },
+      "TAILSCALE_NODE_NAME": {
+        "description": "Name of your app's tailscale (direct) node.",
+        "value": "ts-app-name"
       },
       "TAILSCALE_AUTHKEY": {
         "description": "Tailscale tailnet authentication key.  You can create your key here:  https://login.tailscale.com/admin/settings/keys.",
@@ -30,8 +30,8 @@
         "value": "change-me-to-something-else"
       },
       "WEBHOOK_URL": {
-        "description": "Replace <appname> with your Heroku application name. This will ensure the correct webhook URLs are being shown in n8n.",
-        "value": "https://<app-name>.herokuapp.com"
+        "description": "Replace <heroku-app-name> with your Heroku application name. This will ensure the correct webhook URLs are being shown in n8n.",
+        "value": "https://<heroku-app-name>.herokuapp.com"
       },
       "DB_POSTGRESDB_SSL_REJECT_UNAUTHORIZED": {
         "description": "SSL is required to connect to Postgres on Heroku",

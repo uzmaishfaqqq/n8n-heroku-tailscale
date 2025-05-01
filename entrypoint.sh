@@ -1,10 +1,17 @@
 #!/bin/sh
 
+
 # tailscale
-/tailscaled --tun=userspace-networking --socks5-server=localhost:1055 &
-/tailscale up --auth-key=${TAILSCALE_AUTHKEY} --hostname=${APP_NAME}
+/tailscale/tailscaled \
+  --tun=userspace-networking \
+  --socks5-server=localhost:1055 \
+  --outbound-http-proxy-listen=localhost:1055 \
+  &
+/tailscale/tailscale \
+  --auth-key=${TAILSCALE_AUTHKEY} \
+  --hostname=${TAILSCALE_NODE_NAME} \
+  up
 echo Tailscale started
-export ALL_PROXY=socks5://localhost:1055/
 
 # check if port variable is set or go with default
 if [ -z ${PORT+x} ]; then echo "PORT variable not defined, leaving N8N to default port."; else export N8N_PORT="$PORT"; echo "N8N will start on '$PORT'"; fi
@@ -29,4 +36,7 @@ export DB_POSTGRESDB_USER=$N8N_DB_USER
 export DB_POSTGRESDB_PASSWORD=$N8N_DB_PASSWORD
 
 # kickstart nodemation
-n8n
+ALL_PROXY=socks5://localhost:1055/ \
+  HTTP_PROXY=http://localhost:1055/ \
+  http_proxy=http://localhost:1055/ \
+  n8n

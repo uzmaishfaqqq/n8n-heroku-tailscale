@@ -21,9 +21,9 @@ COPY ./entrypoint.sh /
 RUN chmod +x /entrypoint.sh
 
 # Copy Tailscale binaries from the tailscale image on Docker Hub.
-COPY --from=docker.io/tailscale/tailscale:stable /usr/local/bin/tailscaled /
-COPY --from=docker.io/tailscale/tailscale:stable /usr/local/bin/tailscale /
-RUN mkdir -p /var/run/tailscale /var/cache/tailscale /var/lib/tailscale
+RUN mkdir -p /tailscale /var/run/tailscale /var/cache/tailscale /var/lib/tailscale
+COPY --from=docker.io/tailscale/tailscale:stable /usr/local/bin/tailscaled /tailscale/tailscaled
+COPY --from=docker.io/tailscale/tailscale:stable /usr/local/bin/tailscale /tailscale/tailscale
 
 # Run on container startup.
 CMD ["/entrypoint.sh"]
