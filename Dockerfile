@@ -5,7 +5,7 @@ USER root
 WORKDIR /home/node/packages/cli
 ENTRYPOINT []
 
-RUN apk update && apk add ca-certificates  & rm -rf /var/cache/apk/*
+RUN apk update && apk add ca-certificates  && rm -rf /var/cache/apk/*
 
 COPY ./entrypoint.sh /
 RUN chmod +x /entrypoint.sh
