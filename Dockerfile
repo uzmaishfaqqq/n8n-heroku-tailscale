@@ -5,7 +5,7 @@ USER root
 WORKDIR /home/node/packages/cli
 ENTRYPOINT []
 
-RUN apk update && apk add ca-certificates  && rm -rf /var/cache/apk/*
+RUN apk update && apk add --no-cache ca-certificates && rm -rf /var/cache/apk/*
 
 COPY ./entrypoint.sh /
 RUN chmod +x /entrypoint.sh
@@ -15,5 +15,4 @@ COPY --from=docker.io/tailscale/tailscale:stable /usr/local/bin/tailscaled /tail
 COPY --from=docker.io/tailscale/tailscale:stable /usr/local/bin/tailscale /tailscale/tailscale
 RUN mkdir -p /var/run/tailscale /var/cache/tailscale /var/lib/tailscale
 
-# Run on container startup.
 CMD ["/entrypoint.sh"]
