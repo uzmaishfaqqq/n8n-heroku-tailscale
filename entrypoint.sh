@@ -1,29 +1,31 @@
 #!/bin/sh
+set -e
 
-# tailscale
+echo "Starting Tailscale..."
+
+# Start tailscaled in userspace mode
 /tailscale/tailscaled \
   --tun=userspace-networking \
-  --socks5-server=localhost:1055 \
-  --outbound-http-proxy-listen=localhost:1055 \
-  &
+  --socks5-server=localhost:1055 &
+
+# Bring up Tailscale
 /tailscale/tailscale up \
   --auth-key=${TAILSCALE_AUTHKEY} \
   --hostname=${TAILSCALE_NODE_NAME}
 
-echo Tailscale started
+echo "Tailscale started"
 
-# check if port variable is set or go with default
-if [ -z ${PORT+x} ]; then echo "PORT variable not defined, leaving N8N to default port."; else export N8N_PORT="$PORT"; echo "N8N will start on '$PORT'"; fi
+# Check if Heroku gave us a $PORT, otherwise default
+export N8N_PORT=${PORT:-5678}
+export N8N_HOST=0.0.0.0
+echo "n8n will listen on port $N8N_PORT"
 
-# regex function
+# Parse DATABASE_URL
 parse_url() {
   eval $(echo "$1" | sed -e "s#^\(\(.*\)://\)\?\(\([^:@]*\)\(:\(.*\)\)\?@\)\?\([^/?]*\)\(/\(.*\)\)\?#${PREFIX:-URL_}SCHEME='\2' ${PREFIX:-URL_}USER='\4' ${PREFIX:-URL_}PASSWORD='\6' ${PREFIX:-URL_}HOSTPORT='\7' ${PREFIX:-URL_}DATABASE='\9'#")
 }
-
-# prefix variables to avoid conflicts and run parse url function on arg url
 PREFIX="N8N_DB_" parse_url "$DATABASE_URL"
-echo "$N8N_DB_SCHEME://$N8N_DB_USER:$N8N_DB_PASSWORD@$N8N_DB_HOSTPORT/$N8N_DB_DATABASE"
-# Separate host and port    
+
 N8N_DB_HOST="$(echo $N8N_DB_HOSTPORT | sed -e 's,:.*,,g')"
 N8N_DB_PORT="$(echo $N8N_DB_HOSTPORT | sed -e 's,^.*:,:,g' -e 's,.*:\([0-9]*\).*,\1,g' -e 's,[^0-9],,g')"
 
@@ -34,8 +36,5 @@ export DB_POSTGRESDB_DATABASE=$N8N_DB_DATABASE
 export DB_POSTGRESDB_USER=$N8N_DB_USER
 export DB_POSTGRESDB_PASSWORD=$N8N_DB_PASSWORD
 
-# kickstart nodemation
-ALL_PROXY=socks5://localhost:1055/ \
-  HTTP_PROXY=http://localhost:1055/ \
-  http_proxy=http://localhost:1055/ \
-  n8n
+# Start n8n using Tailscale SOCKS5 proxy
+ALL_PROXY=socks5://localhost:1055 n8n
