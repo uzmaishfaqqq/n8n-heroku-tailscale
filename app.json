@@ -15,11 +15,11 @@
     "env": {
       "GENERIC_TIMEZONE": {
         "description": "Time Zone to use with Heroku. You can find the name of your timezone for example here: https://momentjs.com/timezone/.",
-        "value": "Europe/Berlin"
+        "value": "Asia/Karachi"
       },
       "TAILSCALE_NODE_NAME": {
         "description": "Name of your app's tailscale (direct) node.",
-        "value": "ts-app-name"
+        "value": "n88n"
       },
       "TAILSCALE_AUTHKEY": {
         "description": "Tailscale tailnet authentication key.  You can create your key here:  https://login.tailscale.com/admin/settings/keys.",
@@ -27,7 +27,7 @@
       },
       "N8N_ENCRYPTION_KEY": {
         "description": "Set the n8n encryption key to a static value to avoid Heroku overriding it (causing authentication to fail).",
-        "value": "change-me-to-something-else"
+        "value": "gcuf123"
       },
       "WEBHOOK_URL": {
         "description": "Replace <heroku-app-name> with your Heroku application name. This will ensure the correct webhook URLs are being shown in n8n.",
