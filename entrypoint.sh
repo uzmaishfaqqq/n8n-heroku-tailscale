@@ -37,7 +37,4 @@ export DB_POSTGRESDB_USER=$N8N_DB_USER
 export DB_POSTGRESDB_PASSWORD=$N8N_DB_PASSWORD
 
 # Start n8n using Tailscale SOCKS5 proxy
-ALL_PROXY=socks5://localhost:1055/ \
-  HTTP_PROXY=http://localhost:1055/ \
-  http_proxy=http://localhost:1055/ \
   n8n
